@@ -15,39 +15,41 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "pedido")
-public class Pedido {
+public class Pedido  {
 
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ped_id")
+	@Column(name="ped_id")
 	private int ped_id;
-
-	@Column(name = "ped_dataEmissao")
-	@Type(type = "date")
+	
+	@Column (name="ped_dataEmissao")
+	@Type(type="date")    //https://www.youtube.com/watch?v=wgh3h4zqOeU&list=PL_GwGUsBlNyfI0W3ggfffhBdJUqB4981Z&index=16
 	private Date dataEmissao;
-
-	@Column(name = "ped_status")
+	
+	@Column (name="ped_status")
 	private String status;
-
-	@Column(name = "ped_data_Autorizacao")
-	@Type(type = "date")
+	
+	@Column (name="ped_data_Autorizacao")
+	@Type(type="date")
 	private Date dataAutorizacao;
-
-	@Column(name = "ped_total")
+	
+	@Column (name="ped_total")
 	private float total;
-
-	@Column(name = "ped_desconto")
+	
+	@Column (name="ped_desconto")
 	private float desconto;
-
-	@Column(name = "ped_qtdparcelas")
+	
+	@Column (name="ped_qtdparcelas")
 	private float qtdParcelas;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "pes_id")
+	@JoinColumn(name="pes_id")
 	private Pessoa cliente;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "fpg_id")
+	@JoinColumn (name="fpg_id")
 	private FormaPgto forma_pagamento;
 
 	public int getPed_id() {
@@ -98,7 +100,7 @@ public class Pedido {
 		this.desconto = desconto;
 	}
 
-	public float getQtdParcelas() {
+public float getQtdParcelas() {
 		return qtdParcelas;
 	}
 
@@ -122,31 +124,8 @@ public class Pedido {
 		this.forma_pagamento = forma_pagamento;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ped_id;
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pedido other = (Pedido) obj;
-		if (ped_id != other.ped_id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Pedido [ped_id=" + ped_id + "]";
-	}
+		
 	
+
 }

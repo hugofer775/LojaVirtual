@@ -11,7 +11,7 @@
 					<f:facet name="header">
 						<p:commandButton value="Novo" icon="icon-novo" actionListener="#{produtoCtrl.produto}" oncomplete="PF('dialogo').show();"
 							update=":mensagem :formCadastro:painel">
-							<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+							
 						</p:commandButton>
 
 
@@ -56,7 +56,7 @@
 						<p:commandButton icon="ui-icon-pencil" actionListener="#{produtoCtrl.produto}" update=":mensagem :formCadastro:painel"
 							oncomplete="PF('dialogo').show();">
 							<f:attribute name="produtoSelecionado" value="#{produto}" />
-							<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+							
 						</p:commandButton>
 						<p:commandButton update=":mensagem :formCadastro:painel" oncomplete="PF('dialogo').show()" icon="ui-icon-search" title="View">
 							<f:setPropertyActionListener value="#{produto}" target="#{produtoCtrl.produto}"></f:setPropertyActionListener>

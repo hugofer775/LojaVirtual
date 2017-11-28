@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import beans.FormaPgto;
 import beans.ItensPedido;
@@ -15,7 +17,7 @@ import beans.Produto;
 import persistencia.PedidoDAO;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class PedidoCtrl implements Serializable {
 
 	private static final long serialVersionUID = 1L;
