@@ -15,6 +15,21 @@ pes_senha varchar(32),
 pes_tipo varchar(30)
 );
 
+create table pessoa
+(pes_id	serial primary key,
+pes_nome	varchar(60),
+pes_cpf	char(14),
+pes_rg	varchar(20),
+pes_data_nasc	date,
+pes_rua	varchar(60),
+pes_bairro	varchar(30),
+pes_cidade	varchar(30),
+pes_uf	char(2),
+pes_cep	integer,
+pes_email	varchar(40),
+pes_senha	varchar(32),
+pes_tipo varchar(30));
+
 create table fone
 (
 fon_id serial primary key,

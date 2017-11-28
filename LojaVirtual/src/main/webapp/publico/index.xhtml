@@ -18,7 +18,7 @@
 
 				<p:panel header="#{produto.id}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%">
-						<p:graphicImage url="http://localhost:8080/DEVF/#{produto.id}.png" />
+						<p:graphicImage url="http://localhost:8080/LojaVirtual/#{produto.id}.png" />
 
 						<h:outputText value="#{produto.nome}" />
 						<h:outputText value="#{produto.preco}" />
@@ -44,7 +44,7 @@
 				<p:outputPanel id="prodDetail" style="text-align:center;">
 					<p:panelGrid columns="2" rendered="#{not empty produtoCtrl.prodSelecionado}" columnClasses="label,value">
 						<f:facet name="header">
-							<p:graphicImage name="http://localhost:8080/DEVF/#{produtoCtrl.prodSelecionado.id}-big.png" />
+							<p:graphicImage name="http://localhost:8080/LojaVirtual/#{produtoCtrl.prodSelecionado.id}-big.png" />
 						</f:facet>
 
 						<h:outputText value="Código:" />
