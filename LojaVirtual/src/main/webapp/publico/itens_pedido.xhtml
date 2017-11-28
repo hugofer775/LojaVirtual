@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/templates/modelo.xhtml">
+
+
+
+	<ui:define name="conteudo">
+	<h:form id="form-itens">
+		<p:dataTable value="#{pedidoCtrl.itens.listaProdutos}" var="produtos">
+			<f:facet name="header">
+				<h:outputLabel value="Lista de Produtos do Pedido" />
+			</f:facet>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Código" />
+				</f:facet>
+				<h:outputLabel value="#{produtos.id}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Imagem" />
+				</f:facet>
+				<p:graphicImage  url="http://localhost:8080/DEVF/#{produtos.id}.png" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome" />
+				</f:facet>
+				<h:outputLabel value="#{produtos.nome}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Preço" />
+				</f:facet>
+				<h:outputLabel id="preçoProduto" value="#{produtos.preco}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Quantidade" />
+				</f:facet>
+				<p:selectOneMenu id="quantidade" value="#{pedidoCtrl.itens.quantidade}"
+					style="width:80px">
+					<p:ajax listener="#{pedidoCtrl.calcQuantidadeProduto(produtos)}" update=":frm-subtotal:subTotal" />
+
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+					<f:selectItem itemLabel="3" itemValue="3" />
+					<f:selectItem itemLabel="4" itemValue="4" />
+					<f:selectItem itemLabel="5" itemValue="5" />
+					<f:selectItem itemLabel="6" itemValue="6" />
+					<f:selectItem itemLabel="7" itemValue="7" />
+					<f:selectItem itemLabel="8" itemValue="8" />
+				</p:selectOneMenu>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Excluir" />
+				</f:facet>
+				<p:commandLink value="Excluir" action="#{pedidoCtrl.excluirProdutoDoCarrinho(produtos)}" update="form-itens :frm-subtotal:subTotal">
+					
+				</p:commandLink>
+					
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+<br/>
+	<h:form id="frm-subtotal">
+		<p:panelGrid columns="2"  id="subTotal">
+			<h:outputLabel value="SubTotal" />
+			<h:outputLabel value="#{pedidoCtrl.itens.subTotal}" />
+			
+			<p:commandButton value="Efetuar o Pagamento" action="#{pedidoCtrl.actionPagamento}"/>
+		</p:panelGrid>
+	</h:form>
+</ui:define>
+</ui:composition>

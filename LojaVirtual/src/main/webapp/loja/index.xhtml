@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p= "http://primefaces.org/ui"
+	template="/templates/modelo.xhtml">
+
+<h:head>
+	<title>Lista de Produto</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</h:head>
+<h:body>
+      	<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" href="#">PI Store</a>
+			    </div>
+			    <ul class="nav navbar-nav">
+			      <li class="active"><a href="#">Home</a></li>
+			      
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			      <li><a href="publico/lista_pessoa.xhtml"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			      <li><a href="publico/login.xhtml"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			    </ul>
+
+			  </div>
+			  
+			</nav>
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true"/>
+			<div align="right">
+				<h:commandLink>
+					<p:graphicImage value="/publico/imagens/excel.png" width="24"/>
+					<p:dataExporter type="xls" target="tbl" fileName="f" />
+				</h:commandLink>
+				
+				<h:commandLink>
+					<p:graphicImage value="/publico/imagens/pdf.png" width="24"/>
+					<p:dataExporter type="pdf" target="tbl" fileName="f" />
+				</h:commandLink>
+				
+				<h:commandLink>
+					<p:graphicImage value="/publico/imagens/csv.png" width="24"/>
+					<p:dataExporter type="csv" target="tbl" fileName="f" />
+				</h:commandLink>
+				
+				<h:commandLink>
+					<p:graphicImage value="/publico/imagens/xml.png" width="24"/>
+					<p:dataExporter type="xml" target="tbl" fileName="f" />
+				</h:commandLink>			
+			</div>
+			
+			
+			<p:dataTable id="tbl" var="f" value="#{viewProduto.listagem}"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+				{PageLinks} {NextPageLink} {LastPageLink}"
+				paginator="true" rows="10" style="margin-bottom:20px">
+				]
+				
+				<p:column headerText="Código" sortBy="f.id">
+					<h:outputText value="#{f.id}"/>
+				</p:column>
+				
+				<p:column headerText="Nome" sortBy="f.nome">
+					<h:outputText value="#{f.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Preço" sortBy="f.nome">
+					<h:outputText value="#{f.preco}"/>
+				</p:column>
+				
+				<p:column headerText="Comprar">
+					<a href="carrinho.xhtml" class="btn btn-danger" type="button" style="margin-left: 20px;">Comprar</a>
+				</p:column>
+				
+				</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Pessoa</title>
+</h:head>
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
+	<h:form>
+		<!-- <p:commandButton value="Inicio" action="/publico/index.xhtml" /><br /> -->
+		<div align="center">
+			<p:panelGrid columns="2" >
+				<f:facet name="header">
+					<p:outputLabel value="Cadastro de Pessoas" />
+				</f:facet>
+				<p:outputLabel value="Código" />
+				<p:inputText readonly="true" value="#{pessoaCtrl.pessoa.id}" />
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{pessoaCtrl.pessoa.nome}" />
+				<p:outputLabel value="CPF" />
+				<p:inputText value="#{pessoaCtrl.pessoa.cpf}" />
+				<p:outputLabel value="RG" />
+				<p:inputText value="#{pessoaCtrl.pessoa.rg}" />
+				<p:outputLabel value="Data de Nascimento" />
+				<p:calendar id="button" value="#{pessoaCtrl.pessoa.data}"
+					showOn="button">
+					<f:convertDateTime dateStyle="default" />
+				</p:calendar>
+				<p:outputLabel value="Rua" />
+				<p:inputText value="#{pessoaCtrl.pessoa.rua}" />
+				<p:outputLabel value="Bairro" />
+				<p:inputText value="#{pessoaCtrl.pessoa.bairro}" />
+				<p:outputLabel value="UF" />
+				<p:selectOneMenu filter="true" value="#{pessoaCtrl.end_Estado}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione um Estado" />
+					<f:selectItems value="#{pessoaCtrl.end_Estados}" var="estado"
+						itemValue="#{estado}" itemLabel="#{estado.sigla} - #{estado.nome}" />
+					<p:ajax listener="#{pessoaCtrl.popularCidade}" update="cidade" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Cidade" />
+				<p:selectOneMenu filter="true" id="cidade"
+					value="#{pessoaCtrl.cidade}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione a Cidade" />
+					<f:selectItems value="#{pessoaCtrl.cidades}" var="cidade"
+						itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Cep" />
+				<p:inputText value="#{pessoaCtrl.pessoa.cep}" />
+				<p:outputLabel value="E-mail" />
+				<p:inputText value="#{pessoaCtrl.pessoa.email}" />
+				<p:outputLabel value="Senha" />
+				<p:password value="#{pessoaCtrl.pessoa.senha}" requiredMessage="O campo 'Senha' é obrigatório"  />
+
+			</p:panelGrid>
+
+			<h:dataTable value="#{pessoaCtrl.pessoa.fones}" var="fone"
+				rules="rows">
+				<f:facet name="header">
+					<h:commandButton value="Adicionar Fone"
+						action="#{pessoaCtrl.actionInserirFone}" />
+				</f:facet>
+				<h:column>
+					<f:facet name="header">
+						<p:outputLabel value="Número" />
+					</f:facet>
+					<p:inputText value="#{fone.numero}" size="30" maxlength="20" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<p:outputLabel value="Descrição" />
+					</f:facet>
+					<p:inputText value="#{fone.descricao}" size="30" maxlength="30" />
+				</h:column>
+				<p:column>
+					<p:commandButton value="Remover"
+						action="#{pessoaCtrl.actionExcluirFone(fone)}"></p:commandButton>
+				</p:column>
+			</h:dataTable>
+			<p:commandButton value="Listar" action="admin/lista_pessoa.xhtml" />
+			<p:commandButton value="Gravar" action="#{pessoaCtrl.actionGravar}" />
+		</div>
+	</h:form>
+</h:body>
+
+</html>
