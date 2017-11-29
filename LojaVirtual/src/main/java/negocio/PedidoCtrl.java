@@ -8,9 +8,11 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import beans.FormaPgto;
-import beans.ItensPedido;
+import beans.Itens_Pedido;
 import beans.Pedido;
 import beans.Pessoa;
 import beans.Produto;
@@ -24,7 +26,7 @@ public class PedidoCtrl implements Serializable {
 
 	private Pedido pedido = new Pedido();
 	private Produto produto = new Produto();
-	private ItensPedido itens = new ItensPedido();
+	private Itens_Pedido itens = new Itens_Pedido();
 	private FormaPgto formaPgto = new FormaPgto();
 	private Pessoa pessoa;
 	private boolean desabilitarParcelas = true;
@@ -53,9 +55,9 @@ public class PedidoCtrl implements Serializable {
 		valorDoPedido();
 		return "itens_pedido?faces-redirect=true";
 	}
-	public void valorDoPedido() { // Varre a lista de produtos e soma todos os preços
-									
+	public void valorDoPedido() { // Varre a lista de produtos e soma todos os preços							
 		float valorTotal = 0;
+		
 		for (int i = 0; i < itens.getListaProdutos().size(); i++) {
 			valorTotal += itens.getListaProdutos().get(i).getPreco();
 		}
@@ -68,7 +70,13 @@ public class PedidoCtrl implements Serializable {
 		valorDoPedido();
 		this.itens.setSubTotal(p.getPreco());
 		this.pedido.setTotal(p.getPreco());
-		if (itens.getQuantidade() > 1) {
+		if (itens.getQuantidade() == 1) {
+			float subtotalAtualizado = this.itens.getSubTotal() - p.getPreco();
+			int qtd = itens.getQuantidade();
+			this.itens.setSubTotal(subtotalAtualizado + (p.getPreco() * qtd));
+			this.pedido.setTotal(subtotalAtualizado + (p.getPreco() * qtd));
+		}
+		else if (itens.getQuantidade() > 1) {
 			float subtotalAtualizado = this.itens.getSubTotal() - p.getPreco();
 			int qtd = itens.getQuantidade();
 			this.itens.setSubTotal(subtotalAtualizado + (p.getPreco() * qtd));
@@ -105,7 +113,8 @@ public class PedidoCtrl implements Serializable {
 		}
 		return null;
 	}
-
+	
+	
 	public void gravarPedido() {
 		
 		try {
@@ -146,11 +155,11 @@ public class PedidoCtrl implements Serializable {
 		this.produto = produto;
 	}
 
-	public ItensPedido getItens() {
+	public Itens_Pedido getItens() {
 		return itens;
 	}
 
-	public void setItens(ItensPedido itens) {
+	public void setItens(Itens_Pedido itens) {
 		this.itens = itens;
 	}
 

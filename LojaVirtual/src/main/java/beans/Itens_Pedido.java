@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "itens_pedido")
-public class ItensPedido {
+public class Itens_Pedido {
 
 	@Id
 	@GeneratedValue
@@ -106,7 +106,7 @@ public class ItensPedido {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItensPedido other = (ItensPedido) obj;
+		Itens_Pedido other = (Itens_Pedido) obj;
 		if (id != other.id)
 			return false;
 		return true;

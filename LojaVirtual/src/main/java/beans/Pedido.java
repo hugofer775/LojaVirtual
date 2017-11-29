@@ -25,7 +25,7 @@ public class Pedido  {
 	private int ped_id;
 	
 	@Column (name="ped_dataEmissao")
-	@Type(type="date")    //https://www.youtube.com/watch?v=wgh3h4zqOeU&list=PL_GwGUsBlNyfI0W3ggfffhBdJUqB4981Z&index=16
+	@Type(type="date")    
 	private Date dataEmissao;
 	
 	@Column (name="ped_status")

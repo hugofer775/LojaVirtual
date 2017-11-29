@@ -22,7 +22,7 @@ public class RedirecionaPaginaPadrao implements AuthenticationSuccessHandler{
 			response.sendRedirect("/LojaVirtual/admin/principal.xhtml");
 		}
 		else if(roles.contains("ROLE_Cliente")){
-			response.sendRedirect("/LojaVirtual/cliente/principal.xhtml");
+			response.sendRedirect("/LojaVirtual/cliente/forma_de_pagamento.xhtml");
 		}
 		
 	}
