@@ -28,8 +28,7 @@ public class PedidoCtrl implements Serializable {
 	private FormaPgto formaPgto = new FormaPgto();
 	private Pessoa pessoa;
 	private boolean desabilitarParcelas = true;
-//	@Autowired
-//	private ControleAcessoController successHandler;
+
 
 
 
@@ -67,12 +66,15 @@ public class PedidoCtrl implements Serializable {
 	public String calcQuantidadeProduto(Produto p) { // pega a quantidade de produtos que o cliente solicitou e o preço (subtotal)
 										
 		valorDoPedido();
+		this.itens.setSubTotal(p.getPreco());
+		this.pedido.setTotal(p.getPreco());
 		if (itens.getQuantidade() > 1) {
 			float subtotalAtualizado = this.itens.getSubTotal() - p.getPreco();
 			int qtd = itens.getQuantidade();
 			this.itens.setSubTotal(subtotalAtualizado + (p.getPreco() * qtd));
 			this.pedido.setTotal(subtotalAtualizado + (p.getPreco() * qtd));
 		}
+		
 		return null;
 	}
 

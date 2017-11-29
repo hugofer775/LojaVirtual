@@ -28,8 +28,6 @@
 		<!-- Mapeamento das Classes -->
 		<mapping class="beans.Produto"/>
 		<mapping class="beans.Fone"/>
-		<mapping class="beans.End_Estado" />
-		<mapping class="beans.Cidade" />
 		<mapping class="beans.Pessoa" />
 		<mapping class="beans.FormaPgto" />
 	</session-factory>

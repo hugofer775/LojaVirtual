@@ -44,24 +44,9 @@
 				<p:outputLabel value="Bairro" />
 				<p:inputText value="#{pessoaCtrl.pessoa.bairro}" />
 				<p:outputLabel value="UF" />
-				<p:selectOneMenu filter="true" value="#{pessoaCtrl.end_Estado}"
-					converter="omnifaces.SelectItemsConverter">
-					<f:selectItem noSelectionOption="true"
-						itemLabel="Selecione um Estado" />
-					<f:selectItems value="#{pessoaCtrl.end_Estados}" var="estado"
-						itemValue="#{estado}" itemLabel="#{estado.sigla} - #{estado.nome}" />
-					<p:ajax listener="#{pessoaCtrl.popularCidade}" update="cidade" />
-				</p:selectOneMenu>
-
+				<p:inputText value="#{pessoaCtrl.pessoa.uf}" />
 				<p:outputLabel value="Cidade" />
-				<p:selectOneMenu filter="true" id="cidade"
-					value="#{pessoaCtrl.cidade}"
-					converter="omnifaces.SelectItemsConverter">
-					<f:selectItem noSelectionOption="true"
-						itemLabel="Selecione a Cidade" />
-					<f:selectItems value="#{pessoaCtrl.cidades}" var="cidade"
-						itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
-				</p:selectOneMenu>
+				<p:inputText value="#{pessoaCtrl.pessoa.cidade}" />
 				<p:outputLabel value="Cep" />
 				<p:inputText value="#{pessoaCtrl.pessoa.cep}" />
 				<p:outputLabel value="E-mail" />
