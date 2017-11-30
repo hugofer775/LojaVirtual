@@ -118,8 +118,7 @@ public class PedidoCtrl implements Serializable {
 	public void gravarPedido() {
 		
 		try {
-			Pessoa userLogado = (Pessoa) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");
-			System.out.println(userLogado.getEmail());
+			UserDetails user = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 			PedidoDAO.inserir(pedido);
 			
 		} catch (RuntimeException erro) {

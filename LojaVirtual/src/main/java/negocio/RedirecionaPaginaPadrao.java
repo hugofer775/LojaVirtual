@@ -21,7 +21,7 @@ public class RedirecionaPaginaPadrao implements AuthenticationSuccessHandler{
 		if(roles.contains("ROLE_ADMINISTRADOR")){
 			response.sendRedirect("/LojaVirtual/admin/principal.xhtml");
 		}
-		else if(roles.contains("ROLE_Cliente")){
+		else if(roles.contains("ROLE_CLIENTE")){
 			response.sendRedirect("/LojaVirtual/cliente/forma_de_pagamento.xhtml");
 		}
 		

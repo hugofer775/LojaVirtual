@@ -27,6 +27,8 @@
 
 		<!-- Mapeamento das Classes -->
 		<mapping class="beans.Produto"/>
+		<mapping class="beans.Pedido"/>
+		<mapping class="beans.Itens_Pedido"/>
 		<mapping class="beans.Fone"/>
 		<mapping class="beans.Pessoa" />
 		<mapping class="beans.FormaPgto" />
